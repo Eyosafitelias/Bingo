@@ -1,0 +1,63 @@
+{% extends 'layouts/blank.html' %}
+
+
+
+{% block content %}
+{% include 'splashscreen.html' %}
+<div class="block w-full max-w-2xl mx-auto my-4 px-4 sm:px-8">
+    <div class="grid grid-cols-1 gap-3">
+      <!-- Menu Button Template -->
+      <button class="flex items-center justify-between bg-gray-700 text-white px-5 py-7 rounded-xl shadow hover:bg-gray-600 transition" onclick="joinGame()">
+        <span class="text-base font-semibold">Play</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M6.5 5.5a1 1 0 011.516-.857l6.25 4.5a1 1 0 010 1.714l-6.25 4.5A1 1 0 016.5 14.5v-9z" clip-rule="evenodd" />
+        </svg>
+      </button>
+  
+      <button class="disable flex items-center justify-between bg-gray-700 text-white px-5 py-7 rounded-xl shadow hover:bg-gray-600 transition">
+        <span class="text-base font-semibold">Register</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-1.657 1.343-3 3-3s3 1.343 3 3v1m-6 4h6m2 0a2 2 0 01-2 2H6a2 2 0 01-2-2v-5a2 2 0 012-2h2" />
+        </svg>
+      </button>
+  
+      <a href="{% url 'payment:deposit' %}" class="flex items-center justify-between bg-gray-700 text-white px-5 py-7 rounded-xl shadow hover:bg-gray-600 transition">
+        <span class="text-base font-semibold">Deposit</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+      </a>
+  
+      <a href="{% url 'payment:withdraw' %}" class="flex items-center justify-between bg-gray-700 text-white px-5 py-7 rounded-xl shadow hover:bg-gray-600 transition">
+        <span class="text-base font-semibold">Withdraw Balance</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4v16m4-8H4" />
+        </svg>
+      </a>
+
+      <a href="{% url 'payment:transaction_history' %}" class="flex items-center justify-between bg-gray-700 text-white px-5 py-7 rounded-xl shadow hover:bg-gray-600 transition">
+        <span class="text-base font-semibold">Transaction History</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4v16m4-8H4" />
+        </svg>
+      </a>
+  
+      <button class="flex items-center justify-between bg-gray-700 text-white px-5 py-7 rounded-xl shadow hover:bg-gray-600 transition" onclick="win_patterns()">
+        <span class="text-base font-semibold">Win Patterns</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+<script>
+    function joinGame() {
+    // Redirect to home page
+    window.location.href = '/bingo/';
+}
+
+function win_patterns(){
+  window.location.href = 'win_pattern/'
+}
+</script>
+{% endblock %}
