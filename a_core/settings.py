@@ -99,10 +99,16 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'a_core.asgi.application'
 
+# Replace your current DATABASES configuration with this:
 
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+}
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -110,7 +116,6 @@ DATABASES = {
     }
 }
 
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
