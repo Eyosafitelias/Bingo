@@ -1,18 +1,41 @@
 services:
   - type: web
     name: your-app-web
-    # ... your existing web service config
-  
-  - type: worker
-    name: your-app-telegram-bot
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "./start.sh"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: your-db-name
           property: connectionString
       - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ADMIN_EMAIL
+        value: "admin@example.com"  # Change this
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+
+  - type: worker
+    name: your-app-telegram-bot
+    envVars:
+      - key: DATABASE_URL
+        fromService:
+          name: your-app-web
+          type: web
+          envVarKey: DATABASE_URL
+      - key: SECRET_KEY
         fromService:
           name: your-app-web
           type: web
           envVarKey: SECRET_KEY
+      - key: TELEGRAM_BOT_TOKEN
+        fromService:
+          name: your-app-web
+          type: web
+          envVarKey: TELEGRAM_BOT_TOKEN
     startCommand: python manage.py runbot
